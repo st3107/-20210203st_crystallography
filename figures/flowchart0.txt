@@ -1,0 +1,11 @@
+graph LR
+
+A("input x = x0")
+B("calculate f(x), f'(x)")
+C{"satisfied?"}
+D("next x = x - f'(x)△x")
+E("output x, f(x)")
+
+A --> B --> C
+C -- no --> D --> B
+C -- yes --> E

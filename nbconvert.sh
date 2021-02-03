@@ -1,0 +1,1 @@
+jupyter nbconvert --to slides Untitled.ipynb --TemplateExporter.exclude_input=True --no-prompt

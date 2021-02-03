@@ -1,0 +1,18 @@
+graph LR
+
+A("input x = x0")
+B("calculate f(x)")
+C("random △x")
+D("reject x = x + △x")
+E{"△f(x) = f(x + △x) - f(x) < 0 ?"}
+F("accept x = x + △x")
+G("toss P(x = x + △x) = exp(-△f(x))")
+H{"satisfied?"}
+I("output x, f(x)")
+
+A --> B --> H
+H -- no --> C --> E
+H -- yes --> I
+E -- yes --> F --> B
+E -- no --> G -- heads--> F
+G -- tails --> D --> C
