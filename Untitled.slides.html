@@ -14384,7 +14384,25 @@ div.jp-OutputPrompt {
 <div class="reveal">
 <div class="slides"><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="What-is-the-diffraction-like-in-near-field-(continue-with-Sandra's-picture-in-the-last-lecture)?">What is the diffraction like in near field (continue with Sandra's picture in the last lecture)?<a class="anchor-link" href="#What-is-the-diffraction-like-in-near-field-(continue-with-Sandra's-picture-in-the-last-lecture)?">&#182;</a></h2><p>A simulation of slits diffraction: wavelength = $\lambda$; slit distance = 2$\lambda$; picture width = 30$\lambda$.</p>
+<h1 id="The-definition,-calculation-and-modeling-of-the-pair-distribution-function-(PDF)">The definition, calculation and modeling of the pair distribution function (PDF)<a class="anchor-link" href="#The-definition,-calculation-and-modeling-of-the-pair-distribution-function-(PDF)">&#182;</a></h1><p>What is PDF? How to calculate PDF? How to obtain structure parameters from PDF?</p>
+
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="What-is-the-diffraction-like-in-near-field-(continue-with-Sandra's-picture-in-the-last-lecture)?">What is the diffraction like in near field (continue with Sandra's picture in the last lecture)?<a class="anchor-link" href="#What-is-the-diffraction-like-in-near-field-(continue-with-Sandra's-picture-in-the-last-lecture)?">&#182;</a></h2><ul>
+<li><p>A simulation of slits diffraction</p>
+<ul>
+<li><p>Slits are on the left side wall and the wave is propagating from left to right.</p>
+</li>
+<li><p>wavelength = $\lambda$</p>
+</li>
+<li><p>slit distance = 2$\lambda$</p>
+</li>
+<li><p>picture width = 30$\lambda$</p>
+</li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs jp-mod-noInput ">
@@ -14415,12 +14433,56 @@ div.jp-OutputPrompt {
 
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Which-picture-is-correct,-the-simulation-picture-or-the-Bragg-diffraction-picture?">Which picture is correct, the simulation picture or the Bragg diffraction picture?<a class="anchor-link" href="#Which-picture-is-correct,-the-simulation-picture-or-the-Bragg-diffraction-picture?">&#182;</a></h2><p>It is a different picture from the one of the Bragg diffraction, but both of the pictures are correct, because Bragg is talking about the far field pattern and these pictures are showing near field pictures. In far field, we approximate the spherical wave to be plain wave and approximate the distance with a linear term.</p>
+<h2 id="Which-picture-is-correct?">Which picture is correct?<a class="anchor-link" href="#Which-picture-is-correct?">&#182;</a></h2><ul>
+<li>Sandra's picture<ul>
+<li>each slit emits a spherical wave</li>
+<li>spherical waves interact with each other</li>
+<li>used in near field</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Bragg's picture<ul>
+<li>each slit emits a spherical wave</li>
+<li>each spherical wave is approximated by a plane wave in the far field</li>
+<li>plain waves interact with each other</li>
+<li>used in far field</li>
+</ul>
+</li>
+</ul>
+<p>We use Bragg's picture because our detector is far away from the slits (atoms).</p>
 
 </div>
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="The-definition,-calculation-and-modeling-of-the-pair-distribution-function-(PDF)">The definition, calculation and modeling of the pair distribution function (PDF)<a class="anchor-link" href="#The-definition,-calculation-and-modeling-of-the-pair-distribution-function-(PDF)">&#182;</a></h1><p>What is PDF? How to calculate PDF? How to obtain structure parameters from PDF?</p>
+<h2 id="Why-can-we-use-Fourier-transformation-to-get-PDF?">Why can we use Fourier transformation to get PDF?<a class="anchor-link" href="#Why-can-we-use-Fourier-transformation-to-get-PDF?">&#182;</a></h2>$$
+E_{out} = \sum_i e^{- i \boldsymbol{k} \cdot (\boldsymbol{r} - \boldsymbol{r_i})}\\
+= e^{- i \boldsymbol{k} \cdot \boldsymbol{r}} \sum_i e^{i \boldsymbol{k} \cdot \boldsymbol{r_i}}\\
+= e^{- i \boldsymbol{k} \cdot \boldsymbol{r}} \mathscr{F} (\sum_i \delta(\boldsymbol{r} - \boldsymbol{r_i})) \\
+= e^{- i \boldsymbol{k} \cdot \boldsymbol{r}} \mathscr{F}(T(\boldsymbol{r}))
+$$<p>output electric field = $\mathscr{F}$(the window function) * plane wave field</p>
+<p>In x-ray diffraction, the window function is atom density $T(\boldsymbol{r}) = \rho(\boldsymbol{r})$.</p>
+
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Why-can-we-use-Fourier-transformation-to-get-PDF?">Why can we use Fourier transformation to get PDF?<a class="anchor-link" href="#Why-can-we-use-Fourier-transformation-to-get-PDF?">&#182;</a></h2>$$
+I_{out} = E_{out} E^*_{out}\\
+= \mathscr{F}(\rho(\boldsymbol{r})) \mathscr{F}^{*}(\rho(\boldsymbol{r}))\\
+= \mathscr{F}(\rho(\boldsymbol{r})) \mathscr{F}(\rho(-\boldsymbol{r}))\\
+= \mathscr{F}(\rho(\boldsymbol{r}) * \rho(-\boldsymbol{r}))\\
+= \mathscr{F}(P(\boldsymbol{u}))
+$$<p>output light intensity field = $\mathscr{F}$(the Patterson function)</p>
+
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Why-can-we-use-Fourier-transformation-to-get-PDF?">Why can we use Fourier transformation to get PDF?<a class="anchor-link" href="#Why-can-we-use-Fourier-transformation-to-get-PDF?">&#182;</a></h2>$$
+P(\boldsymbol{u}) = \rho(\boldsymbol{r}) * \rho(-\boldsymbol{r})\\
+= \sum_i \delta(\boldsymbol{r} - \boldsymbol{R_i}) * \sum_j \delta(- \boldsymbol{r} - \boldsymbol{R_j})\\
+= \sum_i \sum_j \delta(\boldsymbol{r} - (\boldsymbol{R_i} - \boldsymbol{R_j}))\\
+= \sum_i \sum_j \delta(\boldsymbol{r} - \boldsymbol{r}_{ij})
+$$<p>Patterson function = the distribution function of atomic pair distances</p>
 
 </div>
 </div></section></section><section><section>
